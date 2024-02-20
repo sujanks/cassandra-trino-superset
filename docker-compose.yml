@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  trino:
+    container_name: trino
+    image: 'trinodb/trino:351'
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./etc:/usr/lib/trino/etc:ro
+    networks:
+      - trino-network
+
+
+  cassandra:
+    image: cassandra:5.0
+    container_name: local-cassandra
+    ports:
+      - '9042:9042'
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: local-cassandra
+      CASSANDRA_CLUSTER_NAME: local-cluster
+    networks:
+      - trino-network
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+
+  superset:
+    container_name: superset
+    image: apache/superset:3.1.0
+    ports:
+      - '8090:8088'
+    environment:
+      SUPERSET_SECRET_KEY: test
+    networks:
+      - trino-network
+
+
+volumes:
+  cassandra-data:
+    driver: local
+
+networks:
+  trino-network:
+    driver: bridge
