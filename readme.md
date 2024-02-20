@@ -1,4 +1,6 @@
-## Superset
+## Cassandra Trino Superset sample project
+
+### Superset
 
 ```
 superset fab create-admin --username admin --firstname Admin --lastname Admin --email admin@localhost --password admin
@@ -20,7 +22,7 @@ pip install sqlalchemy-trino
 trino://'':@trino-1:8080/cassaandra
 ```
 
-## Cassandra
+### Cassandra
 
 ```
 create KEYSPACE demo WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
