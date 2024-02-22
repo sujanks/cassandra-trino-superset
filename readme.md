@@ -3,6 +3,8 @@
 ### Superset
 
 ```
+docker exec -it superset
+
 superset fab create-admin --username admin --firstname Admin --lastname Admin --email admin@localhost --password admin
 
 superset db upgrade
@@ -50,6 +52,10 @@ INSERT INTO demo.users_by_country (country,user_email,first_name,last_name,age)
   VALUES('UK', 'alice@email.com', 'Alice','Brown',26);
 ```
 
-### Ref
+### Setup
 
-* https://anant.us/blog/data-analytics/visualize-data-from-cassandra-in-superset/
+#### Superset setup for trino
+![](./assets/super-trino-setup.png)
+
+#### Superset query
+![](./assets/superset-query.png)
